@@ -4,6 +4,18 @@ from scapy.layers.l2 import Ether
 
 #Define the target to use when setting the ip destination
 target = "www.target.com/30"
+#Setting the target ip destination to analyze packets
+web="www.apple.com"
+webIp= IP(dst=web)
+#Creating the frame
+test_frane= Ether()/webIp
+#Sniffing the web packets
+apl= sniff(count=50)
+#Plotting the lengths of the web packets
+apl.plot(lambda x: len(x))
+print("This is the apple packets", apl)
+for packets in apl:
+    print(packets)
 #Inputs the source and deastination for the ip
 ip = IP(dst=target)
 print(ip)
